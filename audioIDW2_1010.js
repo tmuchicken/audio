@@ -190,8 +190,10 @@ function stopStream(stream) {
     //merger準備
     var merger = context.createChannelMerger(2);
   
-    localStream1.connect(merger,0,0);
-    localStream2.connect(merger,1,1);
+    var source1 = context.createMediaStreamSource(localStream1);
+    var source2 = context.createMediaStreamSource(localStream2);
+    source1.connect(merger,0,0);
+    source2.connect(merger,1,1);
     
     //peer1の作成
     var peer1 = context.createMediaStreamDestination();
